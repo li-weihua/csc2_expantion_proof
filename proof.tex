@@ -1,0 +1,93 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{physics}
+\usepackage{xpatch}
+
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Show}
+\newtheorem{theorem}{Show}
+
+\makeatletter
+\xpatchcmd{\@thm}{\thm@headpunct{.}}{\thm@headpunct{}}{}{}
+\makeatother
+
+\title{The factorizations of square of cosecant function}
+\author{WeiHua Li}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\begin{theorem*}
+\begin{equation} \label{eq:0}
+\sum_{k=-\infty}^{+\infty} \frac{1}{(k\pi + \frac{w}{2})^2} = \csc^2 \frac{w}{2}  \; (w \ne 2n\pi, n\in \mathbb{Z})
+\end{equation}
+\end{theorem*}
+
+\begin{proof}
+
+Gamma function is defined as
+\begin{equation}
+   \Gamma(z) = \int_{0}^{\infty} t^{z-1} e^{-t} \dd t,\quad \mathfrak{R}(z) > 0.
+\end{equation}
+
+Digamma function is defined as
+
+\begin{equation}
+   \psi(z) = \frac{\dd}{\dd z} \ln\Gamma(z) = \frac{\Gamma^{'}(z)}{\Gamma(z)}.
+\end{equation}
+
+We begin with Euler's reflection formula
+\begin{equation}
+    \Gamma(z) \Gamma(1-z) = \frac{\pi}{\sin\pi z}, \quad z \notin \mathbb{Z}
+\end{equation}
+
+Then
+\begin{align*}
+\ln (\Gamma(z) \Gamma(1-z)) &= \ln(\frac{\pi}{\sin \pi z}) \\
+\ln\Gamma(z) + \ln\Gamma(1-z) &= \ln\pi - \ln(\sin(\pi z)) \\
+\frac{\Gamma^{'}(z)}{\Gamma(z)} - \frac{\Gamma^{'}(1-z)}{\Gamma(1-z)}
+&=  - \pi \frac{\cos(\pi z)}{\sin(\pi z)} = -\pi \cot\pi z \\
+\psi(z) - \psi(1-z) &= -\pi \cot \pi z \\
+\psi(1-z) - \psi(z) &= \pi \cot \pi z
+\end{align*}
+
+The derivative of above equation is
+\begin{align*}
+- \psi^{(1)}(1-z) - \psi^{(1)}(z) &= \pi \frac{\dd}{\dd z} \cot \pi z \\
+\psi^{(1)}(z) + \psi^{(1)}(1-z) &= \pi^2 \csc^2 \pi z
+\end{align*}
+
+
+Weierstrass's definition of gamma function is
+\begin{equation}
+\Gamma(z) = \frac{e^{-\gamma z}}{z}  \prod_{n=1}^{\infty} \left(1 + \frac{z}{n} \right)^{-1} e^{z/n} .
+\end{equation}
+
+Thus,
+\begin{align*}
+\psi(z) &= \frac{\dd}{\dd z} \ln\Gamma(z) \\
+&= \frac{\dd}{\dd z} \left(  -\gamma z - \ln(z) + 
+\sum_{n=1}^{\infty} \left(-\ln(1+\frac{z}{n}) + \frac{z}{n}\right)  \right) \\
+&= -\gamma - \frac{1}{z} + \sum_{n=1}^{\infty} \left( \frac{1}{n} - \frac{1}{n+z} \right) .
+\end{align*}
+
+The derivative of digamma function is
+\begin{equation}
+\psi^{(1)}(z) = \frac{1}{z^2} + \sum_{n=1}^{\infty} \frac{1}{(n+z)^2} = \sum_{n=0}^{\infty} \frac{1}{(n+z)^2}.
+\end{equation}
+
+Thus,
+\begin{align*}
+\sum_{k=0}^{\infty} \frac{1}{(z+k)^2} + \sum_{k=0}^{\infty} \frac{1}{(1-z+k)^2} &= \pi^2 \csc^2 \pi z \\
+\sum_{k=0}^{\infty} \frac{1}{(z+k)^2} + \sum_{n=-\infty}^{-1} \frac{1}{(n+z)^2} &= \pi^2 \csc^2 \pi z \\
+\sum_{k=-\infty}^{\infty} \frac{1}{(z+k)^2} &= \pi^2 \csc^2 \pi z \\
+\end{align*}
+
+Then set $z = w / (2\pi)$, equation (\ref{eq:0}) is proofed.
+\end{proof}
+
+\end{document}
